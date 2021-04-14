@@ -39,31 +39,37 @@ window.addEventListener("load", function() {
       if(isNaN(pilotName.value) === false || isNaN(coPilotName.value) === false ||
        isNaN(fuelLevel.value) === true || isNaN(cargoMass.value)=== true){
          alert("All fields are required or Invalid Entry");
-         launchStatus = launchStatus;
-
+         faultyItems.style.visibility = 'hidden'; 
+         launchStatus.innerHTML = "Awaiting Information Before Launch";                          
       }
 
       
-      if(isNaN(pilotName.value) === true || isNaN(coPilotName.value) === true ||
-      isNaN(fuelLevel.value) === false || isNaN(cargoMass.value)=== false){
-         faultyItems.style.visibility = 'visible';
+      // if(isNaN(pilotName.value) === true || isNaN(coPilotName.value) === true ||
+      // isNaN(fuelLevel.value) === false || isNaN(cargoMass.value)=== false){
+      //    faultyItems.style.visibility = 'visible';
 
+      // }
+
+
+      if((pilotName.value = "") || (coPilotName.value = "") || (fuelLevel.value = "") || (cargoMass.value = "")){
+         launchStatus.innerHTML = "Awaiting Information Before Launch";
+         faultyItems.style.visibility = 'hidden';
       }
-
-
-      if(pilotName.value = ''){
-         pilotStatus.innerHTML = `No pilot assigned to Shuttle`;
-      }else{
-         faultyItems.style.visibility = 'visible';
-         pilotStatus.innerHTML = `Pilot: ${pilotName.value} is ready for launch`;
-      }
-      if(coPilotName.value = ''){
-         coPilotStatus.innerHTML = `No Co-Pilot assigned to Shuttle`;
-      }else{
-         faultyItems.style.visibility = 'visible';
-         coPilotStatus.innerHTML = `Co-Pilot: ${coPilotName.value} is ready for launch`;
+      //    pilotStatus.innerHTML = `No pilot assigned to Shuttle`;
+      // }else{
+      //    faultyItems.style.visibility = 'visible';
+      //    pilotStatus.innerHTML = `Pilot: ${pilotName.value} is ready for launch`;
+      // }
+      // if(coPilotName.value = ''){
+      //    coPilotStatus.innerHTML = `No Co-Pilot assigned to Shuttle`;
+      // }else{
+      //    faultyItems.style.visibility = 'visible';
+      //    coPilotStatus.innerHTML = `Co-Pilot: ${coPilotName.value} is ready for launch`;
          
-      }   
+      // }   
+
+      // pilotStatus.innerHTML = `Pilot: ${pilotName.value} is ready for launch`;
+      // coPilotStatus.innerHTML = `Co-Pilot: ${coPilotName.value} is ready for launch`;
 
       if(fuelLevel.value < 10000 && cargoMass.value > 10000) {
          faultyItems.style.visibility = 'visible';
@@ -71,31 +77,57 @@ window.addEventListener("load", function() {
          cargoStatus.innerHTML = `There is too much mass for the shuttle to take off`;
          launchStatus.innerHTML = `Shuttle not ready for launch`;
          launchStatus.style.color = 'red';
-      }
-      else if(fuelLevel.value < 10000 && cargoMass.value < 10000) {
+         pilotStatus.innerHTML = `Pilot: ${pilotName.value} is ready for launch`;
+         coPilotStatus.innerHTML = `Co-Pilot: ${coPilotName.value} is ready for launch`;
+      }else if(fuelLevel.value < 10000 && cargoMass.value < 10000) {
          faultyItems.style.visibility = 'visible';
          fuelStatus.innerHTML = `There is not enough fuel for the journey`;
          cargoStatus = cargoStatus;
          launchStatus.innerHTML = `Shuttle not ready for launch`;
          launchStatus.style.color = 'red';
-      }
-      else if(fuelLevel.value > 10000 && cargoMass.value > 10000) {
+         pilotStatus.innerHTML = `Pilot: ${pilotName.value} is ready for launch`;
+         coPilotStatus.innerHTML = `Co-Pilot: ${coPilotName.value} is ready for launch`;
+      }else if(fuelLevel.value > 10000 && cargoMass.value > 10000) {
          faultyItems.style.visibility = 'visible';
          fuelStatus = fuelStatus;
          cargoStatus.innerHTML = `There is too much mass for the shuttle to take off`;
          launchStatus.innerHTML = `Shuttle not ready for launch`;
          launchStatus.style.color = 'red';
-      }
-      else if(fuelLevel.value > 10000 && cargoMass.value < 10000) {
+         pilotStatus.innerHTML = `Pilot: ${pilotName.value} is ready for launch`;
+         coPilotStatus.innerHTML = `Co-Pilot: ${coPilotName.value} is ready for launch`;
+      }else if(fuelLevel.value < 10000) {
+         faultyItems.style.visibility = 'visible';
+         fuelStatus = fuelStatus;
+         launchStatus.innerHTML = `Shuttle not ready for launch`;
+         launchStatus.style.color = 'red';
+         pilotStatus.innerHTML = `Pilot: ${pilotName.value} is ready for launch`;
+         coPilotStatus.innerHTML = `Co-Pilot: ${coPilotName.value} is ready for launch`;
+      }else if(fuelLevel.value > 10000 && cargoMass.value < 10000) {
          faultyItems.style.visibility = 'visible';
          fuelStatus = fuelStatus;
          cargoStatus = cargoStatus;
          launchStatus.innerHTML = `Ready to Launch`;
          launchStatus.style.color = 'green';
-      }else {
-   
+         pilotStatus.innerHTML = `Pilot: ${pilotName.value} is ready for launch`;
+         coPilotStatus.innerHTML = `Co-Pilot: ${coPilotName.value} is ready for launch`;
+      }else if(fuelLevel.value > 10000) {
+         faultyItems.style.visibility = 'visible';
+         fuelStatus = fuelStatus;
+         launchStatus.innerHTML = `Ready to Launch`;
+         launchStatus.style.color = 'green';
+         pilotStatus.innerHTML = `Pilot: ${pilotName.value} is ready for launch`;
+         coPilotStatus.innerHTML = `Co-Pilot: ${coPilotName.value} is ready for launch`;
+      }else if(cargoMass.value < 10000) {
+         faultyItems.style.visibility = 'visible';
+         fuelStatus = fuelStatus;
+         launchStatus.innerHTML = `Ready to Launch`;
+         launchStatus.style.color = 'green';
+         pilotStatus.innerHTML = `Pilot: ${pilotName.value} is ready for launch`;
+         coPilotStatus.innerHTML = `Co-Pilot: ${coPilotName.value} is ready for launch`;
+      }else{
+         launchStatus.innerHTML = "Awaiting Information Before Launch";
+         faultyItems.style.visibility = 'hidden';
       }
-
       
    });
    
